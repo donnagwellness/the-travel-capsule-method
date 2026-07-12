@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Travel Capsule Method — Donna's Travel Project</title>
+<meta name="description" content="Every item must earn its passport. Discover your Travel DNA, build your capsule with the Passport Method, and pack your wellness with the same intention.">
+<meta property="og:title" content="The Travel Capsule Method — Donna's Travel Project">
+<meta property="og:description" content="Every item must earn its passport. A complete travel planning framework, one prompt at a time.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%231B2A4A'/%3E%3Ccircle cx='50' cy='50' r='46' fill='none' stroke='%23A9834F' stroke-width='3'/%3E%3Ctext x='50' y='64' font-size='46' text-anchor='middle' fill='%23A9834F' font-family='serif'%3ET%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Special+Elite&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1B2A4A;
+    --ink-soft:#2E3F63;
+    --paper:#F1E9D8;
+    --paper-dark:#E5DAC3;
+    --stamp:#B0402A;
+    --gold:#A9834F;
+    --sage:#6E7F5C;
+    --charcoal:#2A2622;
+    --line: rgba(27,42,74,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--charcoal);
+    font-family:"Public Sans", sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; transition-duration:0.001ms !important;}
+  }
+
+  .stamp-font{font-family:"Special Elite", monospace;}
+  .display{font-family:"Fraunces", serif;}
+
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px;}
+
+  /* HERO — passport cover */
+  .hero{
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,0.05), transparent 60%),
+      linear-gradient(160deg, var(--ink) 0%, var(--ink-soft) 100%);
+    color:var(--paper);
+    padding:72px 24px 56px;
+    position:relative;
+    overflow:hidden;
+    border-bottom:6px double rgba(241,233,216,0.35);
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    inset:14px;
+    border:1px solid rgba(241,233,216,0.25);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:620px; margin:0 auto; text-align:center; position:relative;}
+  .eyebrow{
+    font-family:"Special Elite", monospace;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-size:12px;
+    color:var(--gold);
+    margin-bottom:18px;
+  }
+  .crest{
+    width:56px; height:56px; margin:0 auto 20px;
+    border:2px solid var(--gold);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Fraunces", serif;
+    font-size:22px;
+    color:var(--gold);
+  }
+  h1.display{
+    font-size:clamp(38px, 8vw, 58px);
+    font-weight:600;
+    margin:0 0 16px;
+    letter-spacing:-0.01em;
+  }
+  .hero-sub{
+    font-size:16px;
+    color:rgba(241,233,216,0.82);
+    max-width:480px;
+    margin:0 auto;
+  }
+  .hero-tagline{
+    margin-top:28px;
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:19px;
+    color:var(--paper);
+  }
+
+  /* BOARDING PASS STRIP */
+  .pass-strip{
+    background:var(--paper);
+    padding:0;
+  }
+  .pass-card{
+    max-width:680px;
+    margin:-30px auto 0;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    box-shadow:0 18px 40px -20px rgba(27,42,74,0.35);
+    position:relative;
+    z-index:2;
+    display:flex;
+    flex-wrap:wrap;
+  }
+  .pass-field{
+    flex:1 1 33%;
+    padding:20px 18px;
+    border-right:1px dashed var(--line);
+  }
+  .pass-field:last-child{border-right:none;}
+  .pass-label{
+    font-family:"Special Elite", monospace;
+    font-size:10px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:6px;
+  }
+  .pass-value{
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+  }
+
+  /* INTRO STORY */
+  .intro{
+    padding:64px 0 20px;
+  }
+  .intro p{
+    font-size:17px;
+    max-width:600px;
+  }
+  .intro p + p{margin-top:16px;}
+
+  /* PERFORATED DIVIDER */
+  /* DESTINATION POSTCARDS */
+  .postcards{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:16px;
+    margin:8px auto 0;
+    max-width:680px;
+  }
+  .postcard{
+    background:#fff;
+    border:1px dashed var(--line);
+    border-radius:2px;
+    padding:16px 18px;
+    width:150px;
+    text-align:center;
+    box-shadow:0 10px 20px -14px rgba(27,42,74,0.4);
+  }
+  .postcard-label{
+    font-family:"Special Elite", monospace;
+    font-size:11px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    margin-bottom:8px;
+  }
+  .postcard-note{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:14px;
+    color:var(--ink);
+    line-height:1.4;
+  }
+
+  .perf{
+    height:1px;
+    max-width:760px;
+    margin:56px auto;
+    border-top:2px dashed var(--line);
+    position:relative;
+  }
+  .perf::before, .perf::after{
+    content:"";
+    position:absolute; top:-8px;
+    width:16px; height:16px;
+    background:var(--paper);
+    border-radius:50%;
+    border:1px solid var(--line);
+  }
+  .perf::before{left:-8px;}
+  .perf::after{right:-8px;}
+
+  /* STEPS AS STAMPS */
+  .steps-head{text-align:center; margin-bottom:40px;}
+  .steps-head h2{
+    font-size:clamp(26px,5vw,34px);
+    margin-bottom:8px;
+  }
+  .steps-head p{color:var(--ink-soft); max-width:480px; margin:0 auto;}
+
+  .step{
+    display:flex;
+    gap:20px;
+    align-items:flex-start;
+    padding:22px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+
+  .stamp-mark{
+    flex:0 0 auto;
+    width:64px; height:64px;
+    border:2px solid var(--stamp);
+    border-radius:50%;
+    color:var(--stamp);
+    display:flex; align-items:center; justify-content:center;
+    font-family:"Special Elite", monospace;
+    font-size:20px;
+    transform:rotate(-8deg) scale(0.85);
+    opacity:0;
+    transition:transform 0.6s cubic-bezier(.2,.9,.3,1), opacity 0.6s ease;
+  }
+  .step.in-view .stamp-mark{
+    opacity:0.9;
+    transform:rotate(-8deg) scale(1);
+  }
+  .step-body h3{
+    margin:2px 0 6px;
+    font-size:18px;
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .step-body p{margin:0; font-size:15px; color:var(--charcoal);}
+
+  /* PASSPORT TEST CALLOUT */
+  .callout{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:6px;
+    padding:36px 30px;
+    margin:56px 0;
+    position:relative;
+  }
+  .callout::before{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px solid rgba(241,233,216,0.25);
+    border-radius:3px;
+    pointer-events:none;
+  }
+  .callout h3{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:24px;
+    margin:0 0 18px;
+    text-align:center;
+  }
+  .checklist{
+    list-style:none; padding:0; margin:0;
+    display:grid; gap:10px;
+    max-width:420px; margin:0 auto;
+  }
+  .checklist li{
+    font-size:15px;
+    display:flex; gap:10px; align-items:baseline;
+  }
+  .checklist li::before{
+    content:"✓";
+    color:var(--gold);
+    font-weight:700;
+  }
+
+  /* CTA — TICKET TEAR OFF */
+  .cta-wrap{padding:20px 0 88px;}
+  .ticket{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    max-width:560px;
+    margin:0 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .ticket-notch{
+    position:absolute;
+    top:50%; transform:translateY(-50%);
+    width:22px; height:22px;
+    background:var(--paper);
+    border-radius:50%;
+  }
+  .ticket-notch.left{left:-11px;}
+  .ticket-notch.right{right:-11px;}
+  .ticket-inner{
+    padding:32px 32px 30px;
+    text-align:center;
+  }
+  .ticket-inner p.stamp-font{
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:10px;
+  }
+  .ticket-inner h3{
+    font-family:"Fraunces", serif;
+    font-size:26px;
+    margin:0 0 12px;
+    color:var(--ink);
+  }
+  .ticket-inner p.desc{
+    color:var(--charcoal);
+    font-size:15px;
+    max-width:420px;
+    margin:0 auto 24px;
+  }
+  .copy-btn{
+    background:var(--stamp);
+    color:#fff;
+    border:none;
+    padding:14px 28px;
+    border-radius:3px;
+    font-size:15px;
+    font-weight:600;
+    font-family:"Public Sans", sans-serif;
+    cursor:pointer;
+    transition:transform 0.15s ease, background 0.2s ease;
+  }
+  .copy-btn:hover{background:#9a3623;}
+  .copy-btn:active{transform:scale(0.97);}
+  .copy-btn:focus-visible{outline:3px solid var(--gold); outline-offset:2px;}
+  .copy-note{
+    margin-top:12px;
+    font-size:13px;
+    color:var(--ink-soft);
+    min-height:18px;
+  }
+
+  footer{
+    text-align:center;
+    padding:0 24px 60px;
+    color:var(--ink-soft);
+    font-size:14px;
+  }
+  footer .sig{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-size:17px;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+
+  /* MINI NAV */
+  .mini-nav{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    display:flex;
+    justify-content:center;
+    gap:6px;
+    padding:10px 12px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  .mini-nav::-webkit-scrollbar{display:none;}
+  .mini-nav a{
+    flex:0 0 auto;
+    font-family:"Special Elite", monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-decoration:none;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:8px 14px;
+    white-space:nowrap;
+  }
+  .mini-nav a:active{background:var(--paper-dark);}
+
+  /* PILLAR SECTIONS */
+  .pillar{padding:8px 0 40px;}
+  .pillar-eyebrow{
+    font-family:"Special Elite", monospace;
+    font-size:11px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    margin-bottom:10px;
+    text-align:center;
+  }
+  .pillar h2{
+    text-align:center;
+    font-size:clamp(24px,5vw,30px);
+    margin:0 0 14px;
+  }
+  .pillar p.pillar-body{
+    max-width:560px;
+    margin:0 auto 20px;
+    font-size:15.5px;
+  }
+  .tags{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:8px;
+    max-width:560px;
+    margin:0 auto;
+  }
+  .tag{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+
+  @media (max-width:560px){
+    .pass-card{margin-top:-20px; flex-direction:column;}
+    .pass-field{flex:1 1 100%; border-right:none; border-bottom:1px dashed var(--line);}
+    .pass-field:last-child{border-bottom:none;}
+    .step{gap:14px;}
+    .stamp-mark{width:52px; height:52px; font-size:16px;}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Donna's Travel Project</div>
+    <div class="crest">T</div>
+    <h1 class="display">The Travel Capsule Method</h1>
+    <p class="hero-sub">A travel planning framework built on three questions: who you are as a traveller, what deserves a place in your suitcase, and how you'll feel your best while you're away.</p>
+    <p class="hero-tagline">Every item must earn its passport.</p>
+  </div>
+</section>
+
+<nav class="mini-nav">
+  <a href="#travel-dna">Travel DNA</a>
+  <a href="#passport-method">Passport Method</a>
+  <a href="#wellness-capsule">Wellness Capsule</a>
+</nav>
+
+<section class="pass-strip">
+  <div class="pass-card">
+    <div class="pass-field">
+      <div class="pass-label">Trip Length</div>
+      <div class="pass-value">8 Weeks</div>
+    </div>
+    <div class="pass-field">
+      <div class="pass-label">Route</div>
+      <div class="pass-value">Croatia · Spain · France · Italy</div>
+    </div>
+    <div class="pass-field">
+      <div class="pass-label">Status</div>
+      <div class="pass-value">Boarding</div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap intro">
+  <p>I am packing for eight weeks in Europe, and this trip is going to be full of life. Swimming in azure water off exotic little towns in Croatia. Pintxos, txakoli and a few museum afternoons in Spain. Champagne in Épernay, a bold red in Bordeaux, and lazy days in Antibes on the Riviera. Cathedrals and historic towns in Italy, thermal baths and a slower pace on the island of Ischia. Vineyards, winery tours and gorgeous beaches woven in between. Every place has its own flavour, its own scent, its own pace, and I want a wardrobe that can keep up with all of it.</p>
+  <p>So instead of pulling together another generic packing list, I decided to build my wardrobe piece by piece with ChatGPT. One item at a time, photographed and reviewed, kept or let go.</p>
+  <p>It has honestly been one of the more enjoyable projects I have done. I have mixed and matched what I already own, minimised where I could, and left room in my suitcase for a few beautiful things I might find along the way.</p>
+  <p>So many of you have asked how I am approaching it, so I pulled the whole thing together into one prompt you can use for your own trip. Start a new chat, paste it in, and let it become an ongoing conversation rather than a one time list.</p>
+</div>
+
+<div class="postcards">
+  <div class="postcard">
+    <div class="postcard-label">Croatia</div>
+    <div class="postcard-note">Azure water, island towns, swimming most days</div>
+  </div>
+  <div class="postcard">
+    <div class="postcard-label">Spain</div>
+    <div class="postcard-note">Pintxos, txakoli, museums, winery tours</div>
+  </div>
+  <div class="postcard">
+    <div class="postcard-label">France</div>
+    <div class="postcard-note">Champagne in Épernay, Bordeaux reds, Antibes sun</div>
+  </div>
+  <div class="postcard">
+    <div class="postcard-label">Italy</div>
+    <div class="postcard-note">Cathedrals, historic towns, long lunches</div>
+  </div>
+  <div class="postcard">
+    <div class="postcard-label">Ischia</div>
+    <div class="postcard-note">Thermal baths, island stay, slowing right down</div>
+  </div>
+</div>
+
+<div class="perf"></div>
+
+<div class="wrap pillar">
+  <div class="pillar-eyebrow">The Philosophy</div>
+  <h2 class="display">Pack on purpose, not from fear</h2>
+  <p class="pillar-body">Most of us pack from the same worry. What if I need this. So we overpack, we buy things we never touch, and we carry a suitcase full of "just in case." This method works differently. It was never about packing less. It's about packing on purpose, so you end up with one feeling: complete confidence in everything you chose to bring.</p>
+</div>
+
+<div class="wrap pillar" id="travel-dna">
+  <div class="pillar-eyebrow">Step One</div>
+  <h2 class="display">Discover Your Travel DNA</h2>
+  <p class="pillar-body">Before a single item gets packed, it helps to understand how you actually travel. The prompt below starts here, your itinerary, your pace, the activities you care about, your comfort and style, how you like to shop while you're away. Everything that follows is built around that.</p>
+  <div class="tags">
+    <span class="tag">Itinerary</span>
+    <span class="tag">Activities</span>
+    <span class="tag">Packing habits</span>
+    <span class="tag">Shopping style</span>
+    <span class="tag">Comfort & lifestyle</span>
+  </div>
+</div>
+
+<div class="perf"></div>
+
+<div class="wrap" id="passport-method">
+  <div class="steps-head">
+    <div class="pillar-eyebrow">Step Two</div>
+    <h2 class="display">The Passport Method</h2>
+    <p>Eight steps, built to run over several conversations as your wardrobe comes together.</p>
+  </div>
+
+  <div id="steps">
+    <div class="step">
+      <div class="stamp-mark">01</div>
+      <div class="step-body">
+        <h3>Get to know you</h3>
+        <p>Destination, dates, weather, activities, your style, your budget, your luggage. The starting point is you, not a template.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">02</div>
+      <div class="step-body">
+        <h3>Build the wardrobe together</h3>
+        <p>You upload photos of what you already own, one piece at a time. A visual inventory builds gradually rather than all at once.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">03</div>
+      <div class="step-body">
+        <h3>An honest wardrobe editor</h3>
+        <p>Every piece gets a pack, maybe, or leave home, with the reasoning behind it. Duplicates get called out. Nothing gets a pass just to be nice.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">04</div>
+      <div class="step-body">
+        <h3>A true capsule</h3>
+        <p>Your colour palette and gaps become clear. You are encouraged to wear what you already own before anything new gets added to the list.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">05</div>
+      <div class="step-body">
+        <h3>Pack for the person you are</h3>
+        <p>Not just the weather. What you actually reach for, what makes you feel confident, and a gentle challenge if you are packing from habit rather than intention.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">06</div>
+      <div class="step-body">
+        <h3>Everything earns its passport</h3>
+        <p>Does it create outfits, suit the itinerary, and make you excited to wear it? If not, it stays home.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">07</div>
+      <div class="step-body">
+        <h3>Minimise everything, not just clothes</h3>
+        <p>Shoes, makeup, skincare, haircare, electronics. The same thinking applies to the whole suitcase, not just the wardrobe.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="stamp-mark">08</div>
+      <div class="step-body">
+        <h3>The final list</h3>
+        <p>A finished packing list, outfit combinations, travel day looks, dinner outfits, and a weather backup plan, ready before you leave.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="callout">
+    <h3 class="display">The Passport Method</h3>
+    <ul class="checklist">
+      <li>Does it create more than one outfit?</li>
+      <li>Does it work with several other pieces already packed?</li>
+      <li>Does it suit where you are actually going?</li>
+      <li>Does it earn its place, or is it just a "just in case"?</li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap pillar" id="wellness-capsule">
+  <div class="pillar-eyebrow">Step Three</div>
+  <h2 class="display">Travel Wellness Capsule</h2>
+  <p class="pillar-body">Packing well isn't only about clothes. This is where you pack your health with the same intention, medications and supplements, skincare and haircare, all the small daily things that keep you feeling like yourself while you're away. Decant what you can, choose travel sizes, and only bring what you'll actually use. The same question applies here too. Does it earn its passport?</p>
+  <div class="tags">
+    <span class="tag">Medications & supplements</span>
+    <span class="tag">Skincare & haircare</span>
+    <span class="tag">Travel sized toiletries</span>
+    <span class="tag">Decanting</span>
+  </div>
+</div>
+
+<div class="cta-wrap">
+  <div class="ticket">
+    <div class="ticket-notch left"></div>
+    <div class="ticket-notch right"></div>
+    <div class="ticket-inner">
+      <p class="stamp-font">Boarding Pass · The Travel Capsule Method</p>
+      <h3>Ready to build yours?</h3>
+      <p class="desc">Copy the full prompt, start a new chat, and take it slowly. It will get to know how you travel, build your wardrobe piece by piece, and help you pack your wellness capsule too.</p>
+      <button class="copy-btn" id="copyBtn">Copy the full prompt</button>
+      <div class="copy-note" id="copyNote" aria-live="polite"></div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="sig">Discover your Travel DNA. Build your capsule. Travel with confidence.</p>
+  <p>Donna Giannetta</p>
+  <p style="margin-top:6px;"><a href="https://www.instagram.com/donna_l_giannetta" style="color:var(--ink-soft); text-decoration:underline;">Follow along on Instagram</a></p>
+</footer>
+
+<textarea id="promptSource" style="position:absolute; left:-9999px;" aria-hidden="true">
+I want you to become my personal travel stylist, wardrobe editor and wellness minded packing consultant.
+
+I don't want a generic packing list. I want a complete travel planning framework built around three things: who I am as a traveller, what deserves a place in my suitcase, and how I'll feel my best while I'm away.
+
+Think of this as an ongoing project, not a one time conversation.
+
+PART ONE: MY TRAVEL DNA
+
+Before making any recommendations, get to know how I actually travel. Ask me about:
+- My destination(s), dates of travel and full itinerary
+- How I'm getting around (flights, trains, ferries, road trips, cruises)
+- Expected weather and season
+- Activities planned (walking, museums, beaches, wineries, hiking, cycling, formal nights, and so on)
+- My age, height and body shape (if relevant)
+- My colouring and personal style
+- My packing habits, what I always bring and never wear, and past packing mistakes
+- My favourite fabrics and travel clothing
+- My comfort requirements and budget
+- Whether I like shopping while travelling or prefer to leave room in my suitcase
+- My suitcase size and luggage restrictions
+- Whether I will have access to laundry
+- Any special events or dress codes
+
+Summarise what you learn as my Travel DNA before we go any further. Everything that follows should be built around it.
+
+PART TWO: THE PASSPORT METHOD
+
+Build my wardrobe together. Don't give me one big packing list. Instead, ask me to photograph my wardrobe one piece at a time.
+
+I will upload photos of:
+- Dresses
+- Tops
+- Pants
+- Shorts
+- Shoes
+- Jackets
+- Hats
+- Swimwear
+- Accessories
+- Jewellery
+- Bags
+
+As I upload each item, build a visual inventory. Don't make final decisions immediately. Keep refining my wardrobe as new pieces are added.
+
+For every piece tell me: Pack, Maybe, or Leave Home. Then explain why it works, why it doesn't, whether it duplicates another item, how many outfits it creates, and whether it deserves space in my suitcase.
+
+I want honest feedback. Don't tell me something looks good just to be nice. Challenge my choices if another item already does the same job better.
+
+As we go, create a wardrobe where almost everything mixes together. Help me identify my colour palette, my style, my wardrobe gaps, items I don't need, and items that are worth buying. Encourage me to wear what I already own before suggesting new purchases. If something would be better bought while travelling rather than before I leave, tell me. Help me avoid buying clothing simply because I think I "might" need it.
+
+Don't just help me pack for the weather. Help me pack for the person I am. Pay attention to what I naturally reach for, what I actually wore on previous trips, what makes me feel confident, what suits my lifestyle, and what I genuinely enjoy wearing. Challenge me if I am packing from habit instead of intention.
+
+Throughout the entire process, ask: does this item earn its passport? Does it create multiple outfits, work with several other pieces, suit my itinerary, pack well, and make me excited to wear it? If not, it stays home.
+
+PART THREE: MY TRAVEL WELLNESS CAPSULE
+
+Packing isn't only about clothes. Help me pack my health with the same intention. Ask me about:
+- Medications and supplements I take daily or while travelling
+- My skincare and haircare routine
+- Toiletries I don't want to be without
+- Whether I can decant, use travel sizes, or find multi purpose products to save space and weight
+
+Apply the same passport question here. Does it earn its place, or does it stay home?
+
+PART FOUR: BEFORE I TRAVEL
+
+Once we have finished, create my final packing list, outfit combinations, travel day outfit, cruise outfits, dinner outfits, walking outfits, layering combinations, weather backup plan, a shopping wishlist, my wellness capsule list, and a final suitcase checklist.
+
+My travel philosophy: I want to buy less. Pack lighter. Wear more. Leave room for beautiful pieces I discover while travelling. I don't want a suitcase full of "just in case." I want a suitcase full of "I can't wait to wear this," and a wellness capsule I know I can rely on.
+</textarea>
+
+<script>
+  // Scroll reveal for stamps
+  const steps = document.querySelectorAll('.step');
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in-view');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.3});
+  steps.forEach(s=>observer.observe(s));
+
+  // Copy to clipboard
+  const copyBtn = document.getElementById('copyBtn');
+  const copyNote = document.getElementById('copyNote');
+  const source = document.getElementById('promptSource');
+
+  copyBtn.addEventListener('click', async ()=>{
+    const text = source.value.trim();
+    try{
+      await navigator.clipboard.writeText(text);
+      copyNote.textContent = "Copied. Paste it into a new ChatGPT chat.";
+    }catch(err){
+      source.style.position = 'static';
+      source.style.left = '0';
+      source.select();
+      try{
+        document.execCommand('copy');
+        copyNote.textContent = "Copied. Paste it into a new ChatGPT chat.";
+      }catch(e){
+        copyNote.textContent = "Select the text above and copy it manually.";
+      }
+      source.style.position = 'absolute';
+      source.style.left = '-9999px';
+    }
+  });
+</script>
+
+</body>
+</html>
