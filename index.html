@@ -344,6 +344,30 @@
   }
   .ticket-notch.left{left:-11px;}
   .ticket-notch.right{right:-11px;}
+  .visible-prompt{
+    max-width:520px;
+    margin:16px auto 0;
+    text-align:left;
+  }
+  .visible-prompt textarea{
+    width:100%;
+    height:160px;
+    padding:14px;
+    font-family:monospace;
+    font-size:12px;
+    color:var(--charcoal);
+    background:var(--paper-dark);
+    border:1px solid var(--line);
+    border-radius:6px;
+    resize:vertical;
+  }
+  .visible-prompt p{
+    font-size:12px;
+    color:var(--ink-soft);
+    margin:6px 0 0;
+    text-align:center;
+  }
+
   .ticket-inner{
     padding:32px 32px 30px;
     text-align:center;
@@ -723,18 +747,8 @@
       <p class="desc">Copy the full prompt, start a new chat, and take it slowly. It will get to know how you travel, build your wardrobe piece by piece, and help you pack your wellness capsule too.</p>
       <button class="copy-btn" id="copyBtn">Copy the full prompt</button>
       <div class="copy-note" id="copyNote" aria-live="polite"></div>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <p class="sig">Discover your Travel DNA. Build your capsule. Travel with confidence.</p>
-  <p>Donna Giannetta</p>
-  <p style="margin-top:6px;"><a href="https://www.instagram.com/donna_l_giannetta" style="color:var(--ink-soft); text-decoration:underline;">Follow along on Instagram</a></p>
-</footer>
-
-<textarea id="promptSource" style="position:absolute; left:-9999px;" aria-hidden="true">
-THE TRAVEL CAPSULE METHOD
+      <div class="visible-prompt">
+        <textarea id="promptSource" readonly>THE TRAVEL CAPSULE METHOD
 
 I want you to become my personal travel stylist, wardrobe editor, packing strategist and wellness minded travel consultant.
 
@@ -843,8 +857,20 @@ MY TRAVEL PHILOSOPHY
 
 I want to buy less. Pack lighter. Wear more. Leave room for beautiful discoveries. I don't want a suitcase full of "just in case." I want a suitcase full of "I can't wait to wear this." I want every recommendation to reflect thoughtful, intentional travel rather than overpacking.
 
-Throughout this project, act like an experienced travel stylist, wardrobe editor and trusted travel companion who understands my personal style, my itinerary and the way I love to travel.
-</textarea>
+Throughout this project, act like an experienced travel stylist, wardrobe editor and trusted travel companion who understands my personal style, my itinerary and the way I love to travel.</textarea>
+        <p>If the button above doesn't work, tap inside the box, select all, then copy.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p class="sig">Discover your Travel DNA. Build your capsule. Travel with confidence.</p>
+  <p>Donna Giannetta</p>
+  <p style="margin-top:6px;"><a href="https://www.instagram.com/donna_l_giannetta" style="color:var(--ink-soft); text-decoration:underline;">Follow along on Instagram</a></p>
+</footer>
+
+
 
 <script>
   // Scroll reveal for stamps
@@ -866,22 +892,28 @@ Throughout this project, act like an experienced travel stylist, wardrobe editor
 
   copyBtn.addEventListener('click', async ()=>{
     const text = source.value.trim();
+    const originalLabel = copyBtn.textContent;
+    let copied = false;
     try{
       await navigator.clipboard.writeText(text);
-      copyNote.textContent = "Copied. Paste it into a new ChatGPT chat.";
+      copied = true;
     }catch(err){
-      source.style.position = 'static';
-      source.style.left = '0';
-      source.select();
       try{
+        source.select();
+        source.setSelectionRange(0, text.length);
         document.execCommand('copy');
-        copyNote.textContent = "Copied. Paste it into a new ChatGPT chat.";
+        copied = true;
       }catch(e){
-        copyNote.textContent = "Select the text above and copy it manually.";
+        copied = false;
       }
-      source.style.position = 'absolute';
-      source.style.left = '-9999px';
     }
+    if(copied){
+      copyBtn.textContent = "Copied ✓";
+      copyNote.textContent = "Now paste it into a new ChatGPT chat.";
+    }else{
+      copyNote.textContent = "Tap inside the box below, select all, then copy.";
+    }
+    setTimeout(()=>{ copyBtn.textContent = originalLabel; }, 2500);
   });
 </script>
 
